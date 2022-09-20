@@ -6,9 +6,21 @@ const ProfileShelf = () => {
 
   const { logout } = useAuth0();
 
+  //Fetching user information currently from auth0 cloud DB, will be swapped in future to external database.
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+    if (isLoading) {
+      return <div>Loading ...</div>;
+    }
+
     return (
       <div>
         Profile Shelf
+        <div>
+          <img src={user?.picture} alt={user?.name} />
+          <h2>{user?.name}</h2>
+          <p>{user?.email}</p>
+        </div>
         <Button onClick={() => logout({returnTo: "http://localhost:3000/messages"})}>
           Logout
         </Button>
