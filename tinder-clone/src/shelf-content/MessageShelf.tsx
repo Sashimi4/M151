@@ -4,7 +4,7 @@ const MessageShelf = () => {
 
     return (
       <div>
-        Message Shelf
+        logged out
       </div>
     );
   }

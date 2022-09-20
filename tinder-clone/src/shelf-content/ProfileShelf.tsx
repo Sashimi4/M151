@@ -9,8 +9,8 @@ const ProfileShelf = () => {
     return (
       <div>
         Profile Shelf
-        <Button onClick={() => logout({returnTo: "/login"})}>
-          <h2>Logout</h2>
+        <Button onClick={() => logout({returnTo: "http://localhost:3000/messages"})}>
+          Logout
         </Button>
       </div>
     );

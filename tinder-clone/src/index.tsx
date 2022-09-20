@@ -10,15 +10,13 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const AUTH0_BASE_URL = "https://localhost:3000";
-
 root.render(
   <React.StrictMode>
     <Auth0Provider
-      domain="dev-opmozjaa.us.auth0.com"
-      clientId="c2myyEju3WbyPYQLqrzTb5wdqoxBbqsF"
-      redirectUri={`${AUTH0_BASE_URL}/api/auth/callback`}>
-    <App />
+    domain="dev-opmozjaa.us.auth0.com"
+    clientId="c2myyEju3WbyPYQLqrzTb5wdqoxBbqsF"
+    redirectUri="http://localhost:3000/search"> {/* this is where it takes you*/}
+      <App/>
     </Auth0Provider>
   </React.StrictMode>
 );
