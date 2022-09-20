@@ -14,12 +14,12 @@ const Navigation = () => {
             <Routes>
                 {/* Set to '!' negative for development purposes. Reason 
                 being to not needing to always enter login credentials. */}
-                { isAuthenticated ? (
+                { !isAuthenticated ? (
                     <>
                         <Route path="/welcome" element={<LandinPage/>} />
                         <Route path="/home" element={<Home/>} />
                     </>
-                ) : 
+                ) :
                     <>
                         <Route path="/welcome" element={<LandinPage/>} />
                     </>
