@@ -21,7 +21,7 @@ const ProfileShelf = () => {
           <h2>{user?.name}</h2>
           <p>{user?.email}</p>
         </div>
-        <Button onClick={() => logout({returnTo: "http://localhost:3000/messages"})}>
+        <Button onClick={() => logout({returnTo: "http://localhost:3000/welcome"})}>
           Logout
         </Button>
       </div>

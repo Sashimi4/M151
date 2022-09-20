@@ -15,7 +15,7 @@ root.render(
     <Auth0Provider
     domain="dev-opmozjaa.us.auth0.com"
     clientId="c2myyEju3WbyPYQLqrzTb5wdqoxBbqsF"
-    redirectUri="http://localhost:3000/search"> {/* this is where it takes you*/}
+    redirectUri="http://localhost:3000/home"> {/* this is where it takes you*/}
       <App/>
     </Auth0Provider>
   </React.StrictMode>
