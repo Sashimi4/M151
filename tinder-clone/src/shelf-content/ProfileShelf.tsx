@@ -7,7 +7,7 @@ const ProfileShelf = () => {
   const { logout } = useAuth0();
 
   //Fetching user information currently from auth0 cloud DB, will be swapped in future to external database.
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isLoading } = useAuth0();
 
     if (isLoading) {
       return <div>Loading ...</div>;
