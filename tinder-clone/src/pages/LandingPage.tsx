@@ -4,10 +4,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 const LandinPage = () => {
 
-  const printClick = () =>{
-    console.log("click")
-  }
-
   const { loginWithRedirect } = useAuth0();
 
     return (

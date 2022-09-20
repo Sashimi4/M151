@@ -1,12 +1,12 @@
 import React from 'react';
 
-const MessageShelf = () => {
+const Footer = () => {
 
     return (
       <div>
-        logged out
+        
       </div>
     );
   }
 
-  export default MessageShelf;
+  export default Footer;
