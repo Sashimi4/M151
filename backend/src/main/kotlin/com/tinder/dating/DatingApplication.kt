@@ -7,5 +7,6 @@ import org.springframework.boot.runApplication
 class DatingApplication
 
 fun main(args: Array<String>) {
+	println("hello world")
 	runApplication<DatingApplication>(*args)
 }
