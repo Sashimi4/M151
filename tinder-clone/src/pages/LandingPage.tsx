@@ -47,7 +47,7 @@ const LandinPage = () => {
   `;
 
   const Button = styled.button`
-    background: transparent;
+    position: absolute;
     border-radius: 50px;
     border: 2px solid palevioletred;
     color: palevioletred;
