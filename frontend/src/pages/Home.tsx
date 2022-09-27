@@ -2,6 +2,8 @@ import { Client, over } from 'stompjs';
 import React, { useState, useEffect } from 'react';
 import ProfileShelf from '../shelf-content/ProfileShelf';
 import SockJS from 'sockjs-client';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+import ProfileCard from '../components/ProfileCard';
 
 var stompClient: Client | null = null
 //source : https://github.com/JayaramachandranAugustin/ChatApplication/blob/main/react-client/src/components/ChatRoom.js
@@ -52,9 +54,15 @@ const Home = () => {
         <button onClick={connect}>Connect to  Server</button>
         <br/>
         <button onClick={sendValue}>Send Message</button>
+        <hr></hr>
+        <ProfileCard />
+        <hr></hr>
         <ProfileShelf/>
       </div>
     );
   }
 
-  export default Home;
+  export default withAuthenticationRequired(Home, {
+    // Update message with loading icon
+    onRedirecting: () => (<div>Redirecting you to the login page...</div>)
+  });
