@@ -36,7 +36,7 @@ const Home = () => {
   const sendValue=()=>{
     if (stompClient) {
       var chatMessage = {
-        message: "potatoe",
+        message: "sascha",
       };
       console.log(chatMessage);
       stompClient.send("/message", {}, JSON.stringify(chatMessage));
@@ -52,6 +52,7 @@ const Home = () => {
         <button onClick={connect}>Connect to  Server</button>
         <br/>
         <button onClick={sendValue}>Send Message</button>
+        <ProfileShelf/>
       </div>
     );
   }

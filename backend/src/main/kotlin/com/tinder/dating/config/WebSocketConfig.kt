@@ -1,4 +1,4 @@
-package com.tinder.dating
+package com.tinder.dating.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.messaging.simp.config.MessageBrokerRegistry
@@ -16,9 +16,6 @@ class WebSocketConfig : WebSocketMessageBrokerConfigurer {
     }
 
     override fun registerStompEndpoints(registry: StompEndpointRegistry) {
-        // with sockjs
         registry.addEndpoint("/ws-message").setAllowedOriginPatterns("*").withSockJS()
-        //without sockjs
-        //registry.addEndpoint("/ws-message").setAllowedOriginPatterns("*")
     }
 }
