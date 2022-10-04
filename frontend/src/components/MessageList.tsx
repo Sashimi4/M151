@@ -8,7 +8,7 @@ const MessageList = () => {
     const [chats, setChats] = useState(["Sarah","Jimmy"])
 
     return (
-        <Paper elevation={0}>
+        <Paper elevation={0} sx={{overflow: 'scroll'}}>
             <p>Messages</p>
             <MessageBlock/>
             <MessageBlock/>

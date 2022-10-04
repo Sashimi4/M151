@@ -5,7 +5,7 @@ import Grid2 from '@mui/material/Unstable_Grid2'
 
 const TextField = (props: any) => {
 
-    const [message, setMessage] = useState("Burger")
+    const [message, setMessage] = useState("")
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMessage(event.target.value)
