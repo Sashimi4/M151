@@ -57,10 +57,10 @@ const Home = () => {
       /* Interchangeable shelf content */
       <div>
         <Grid2 container>
-          <Grid2 xs={2}>
+          <Grid2 xs={3}>
             <ProfileShelf/>
           </Grid2>
-          <Grid2 xs={4}>
+          <Grid2 xs={3}>
             <MessageList/>
           </Grid2>
           <Grid2 xs={6}>
