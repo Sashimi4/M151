@@ -1,5 +1,5 @@
+import { Paper } from '@mui/material'
 import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
 import MessageBlock from './MessageBlock'
 
 //Probably need a chat websocket
@@ -8,20 +8,19 @@ const MessageList = () => {
     const [chats, setChats] = useState(["Sarah","Jimmy"])
 
     return (
-        <Container>
+        <Paper elevation={0}>
             <p>Messages</p>
             <MessageBlock/>
             <MessageBlock/>
             <MessageBlock/>
-        </Container>
+            <MessageBlock/>
+            <MessageBlock/>
+            <MessageBlock/>
+            <MessageBlock/>
+            <MessageBlock/>
+            <MessageBlock/>
+        </Paper>
     )
 }
-
-    const Container = styled.div`
-        flex: 3;
-        background-color: red;
-        padding-top: 1em;
-        padding-bottom: 1em;
-    `
 
 export default MessageList

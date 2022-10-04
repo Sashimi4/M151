@@ -1,5 +1,7 @@
+import { Avatar, Card } from '@mui/material'
 import React from 'react'
-import styled, { css } from 'styled-components'
+
+import Typography from '@mui/material/Typography'
 
 const MessageBlock = (props: any) => {
 
@@ -11,31 +13,31 @@ const MessageBlock = (props: any) => {
 
     //Needs more dynamic sizes instead of fixed ones => or just not have it responsive
     const truncateText = (text: string) => {
-        return text.length > 30 ? text.substring(0, 25) + "..." : text;
+        return text.length > 30 ? text.substring(0, 45) + "..." : text;
     }
 
     return (
-        <Wrapper onClick={openChat}>
-            <Avatar src={"https://i.imgur.com/oPj4A8u.jpeg"}/>
-            <ChatTitle>Janet, 38</ChatTitle>
-            <br/>
-            <LastMessage>{truncateText(lastMessage)}</LastMessage>
-        </Wrapper>
+        <Card onClick={openChat} variant="outlined"
+        sx={{
+        backgroundColor: 'black',
+        borderRadius: 0,
+        borderColor: 'red',
+        padding: "1em",
+        }}>
+            <Avatar src={"https://i.imgur.com/oPj4A8u.jpeg"} alt="Avatar"/>
+            <Typography sx={{color: 'white'}}>Janet, 38</Typography>
+            <Typography sx={{color: 'white'}}>{truncateText(lastMessage)}</Typography>
+        </Card>
     )
 }
 
+/*
     const Wrapper = styled.div`
         background: transparent;
         border: 1px solid grey;
         background-color: black;
         padding: 1em;
         color: white;
-    `
-
-    const Avatar = styled.img`
-        position: relative;
-        width: auto;
-        height: 5em;
     `
 
     const ChatTitle = styled.h3`
@@ -49,6 +51,6 @@ const MessageBlock = (props: any) => {
         padding: 0em;
         overflow: hidden;
         text-overflow: ellipsis;
-    `
+*/
 
 export default MessageBlock

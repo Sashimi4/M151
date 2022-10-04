@@ -3,6 +3,9 @@ import styled, { css } from 'styled-components'
 import Carousel from 'styled-components-carousel'
 import { AiOutlineEnvironment } from "react-icons/ai"
 
+import { Card, CardContent, CardMedia } from '@mui/material'
+import Typography from '@mui/material/Typography'
+
 const ProfileCard = (props: any) => {
 
     //match stands for users matches and represents other users
@@ -16,17 +19,20 @@ const ProfileCard = (props: any) => {
 
     //array of users -> grab like 5 and then reload or just always grab a new one.
     return (
-        <CardContainer>
-            {/* carousel of photos prob to begin with 3 */}
-            <ProfileImage src={"https://imgur.com/OckVkRo.jpg"}/>
-            <TextWrapper>
-                <UserTitle>{match.name}, {match.age}</UserTitle>
-                <LocationText><AiOutlineEnvironment/> {match.country} | {match.city} </LocationText>
-                <AboutText>
-                    {match.aboutMe}
-                </AboutText>
-            </TextWrapper>
-        </CardContainer>
+        <Card>
+            <CardMedia
+                component="img"
+                image="https://imgur.com/OckVkRo.jpg"
+                height="100%"
+                width="100%"
+                alt="Profile Picture"
+            />
+            <CardContent>
+                <Typography>{match.name}, {match.age}</Typography>
+                <Typography><AiOutlineEnvironment/> {match.country} | {match.city} </Typography>
+                <Typography>{match.aboutMe}</Typography>
+            </CardContent>
+        </Card>
     )
 }
 

@@ -4,10 +4,13 @@ import styled, { css } from 'styled-components';
 import SockJS from 'sockjs-client';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 
+import Grid2 from '@mui/material/Unstable_Grid2';
+
 import ProfileCard from '../components/ProfileCard';
 import MessageList from '../components/MessageList';
 import SearchShelf from '../shelf-content/SearchShelf';
 import ProfileShelf from '../shelf-content/ProfileShelf';
+import MessageShelf from '../shelf-content/MessageShelf';
 
 var stompClient: Client | null = null
 //source : https://github.com/JayaramachandranAugustin/ChatApplication/blob/main/react-client/src/components/ChatRoom.js
@@ -52,13 +55,19 @@ const Home = () => {
 
     return (
       /* Interchangeable shelf content */
-      <Container>
-        <MessageList/>
-        <SearchShelf/>
-
-        
-        <ProfileShelf/>
-      </Container>
+      <div>
+        <Grid2 container>
+          <Grid2 xs={2}>
+            <ProfileShelf/>
+          </Grid2>
+          <Grid2 xs={4}>
+            <MessageList/>
+          </Grid2>
+          <Grid2 xs={6}>
+            <MessageShelf/>
+          </Grid2>
+        </Grid2>
+      </div>
     );
   }
   /* Web socket logic:
@@ -71,12 +80,6 @@ const Home = () => {
         <hr></hr>
         <hr></hr>
   */
-
-  const Container = styled.div`
-    display: flex;
-    height: 50em;
-    background-color: blue;
-  `
 
   export default withAuthenticationRequired(Home, {
     // Update message with loading icon
