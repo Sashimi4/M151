@@ -14,7 +14,7 @@ const ProfileShelf = () => {
     }
 
     return (
-      <div>
+      <Container>
         Profile Shelf
         <div>
           <img src={user?.picture} alt={user?.name} />
@@ -24,9 +24,16 @@ const ProfileShelf = () => {
         <Button onClick={() => logout({returnTo: "http://localhost:3000/welcome"})}>
           Logout
         </Button>
-      </div>
+      </Container>
     );
   }
+
+  const Container = styled.div`
+    //display: flex;
+    flex: 2 //testing purposes -> but should be flex: 5 like in the Figma
+    height: 50em;
+    background-color: blue;
+  `
 
   const Button = styled.button`
     background: transparent;
@@ -35,6 +42,6 @@ const ProfileShelf = () => {
     color: palevioletred;
     margin: 0 1em;
     padding: 0.25em 1em;
-  `;
+  `
 
   export default ProfileShelf;

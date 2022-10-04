@@ -16,6 +16,7 @@ const MessageBlock = (props: any) => {
 
     return (
         <Wrapper onClick={openChat}>
+            <Avatar src={"https://i.imgur.com/oPj4A8u.jpeg"}/>
             <ChatTitle>Janet, 38</ChatTitle>
             <br/>
             <LastMessage>{truncateText(lastMessage)}</LastMessage>
@@ -29,6 +30,12 @@ const MessageBlock = (props: any) => {
         background-color: black;
         padding: 1em;
         color: white;
+    `
+
+    const Avatar = styled.img`
+        position: relative;
+        width: auto;
+        height: 5em;
     `
 
     const ChatTitle = styled.h3`

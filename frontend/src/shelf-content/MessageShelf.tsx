@@ -4,7 +4,7 @@ const MessageShelf = () => {
 
     return (
       <div>
-        logged out
+        Chat room here
       </div>
     );
   }

@@ -7,14 +7,14 @@ const SearchShelf = () => {
 
     return (
       <Wrapper>
-        <MessageList/>
         <ProfileCard/>
       </Wrapper>
     );
   }
 
   const Wrapper = styled.div`
-    display: flex;
+    //display: flex;
+    flex: 5
     height: 50em;
     background-color: blue;
   `

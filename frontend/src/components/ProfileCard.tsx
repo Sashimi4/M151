@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import Carousel from 'styled-components-carousel'
 import { AiOutlineEnvironment } from "react-icons/ai"
 
-const ProfileCard = () => {
+const ProfileCard = (props: any) => {
 
     //match stands for users matches and represents other users
     const [match, setMatch] = useState({
@@ -35,7 +35,6 @@ export default ProfileCard
 const CardContainer = styled.div`
     position: relative;
     //display: flex;
-    flex: 4;
     flex-direction: column;
     justify-content: center;
     padding: 8px;
@@ -53,7 +52,7 @@ const ProfileImage = styled.img`
     position: relative;
     height: auto;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 10px;
 `
 
