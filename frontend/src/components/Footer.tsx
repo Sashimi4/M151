@@ -4,10 +4,14 @@ import styled, { css } from 'styled-components';
 const Footer = () => {
 
     return (
-      <div>
-        
-      </div>
+      <Container>
+        Footer
+      </Container>
     );
   }
+
+  const Container = styled.div`
+    backgroundColor: "#44014C"
+  `
 
   export default Footer;

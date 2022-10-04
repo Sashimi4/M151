@@ -34,10 +34,13 @@ export default ProfileCard
 
 const CardContainer = styled.div`
     position: relative;
-    display: flex;
+    //display: flex;
+    flex: 4;
     flex-direction: column;
     justify-content: center;
     padding: 8px;
+    margin-right: 2em;
+    margin-left: 2em;
     align-items: center;
     width: 50%;
     border-radius: 10px;
@@ -47,8 +50,10 @@ const CardContainer = styled.div`
 `
 
 const ProfileImage = styled.img`
+    position: relative;
     height: auto;
     width: 100%;
+    object-fit: cover;
     border-radius: 10px;
 `
 

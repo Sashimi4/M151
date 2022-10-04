@@ -4,9 +4,12 @@ import ProfileShelf from '../shelf-content/ProfileShelf';
 import SockJS from 'sockjs-client';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import ProfileCard from '../components/ProfileCard';
+import MessageList from '../components/MessageList';
+import SearchShelf from '../shelf-content/SearchShelf';
 
 var stompClient: Client | null = null
 //source : https://github.com/JayaramachandranAugustin/ChatApplication/blob/main/react-client/src/components/ChatRoom.js
+
 const Home = () => {
 
   const [message, setMessage] = useState("empty")
@@ -48,14 +51,14 @@ const Home = () => {
     return (
       /* Interchangeable shelf content */
       <div>
+        <SearchShelf/>
+
         <h1>Home</h1>
         <p>Still working</p>
         <p>New message: {message}</p>
-        <button onClick={connect}>Connect to  Server</button>
-        <br/>
+        <button onClick={connect}>Connect to Server</button>
         <button onClick={sendValue}>Send Message</button>
         <hr></hr>
-        <ProfileCard />
         <hr></hr>
         <ProfileShelf/>
       </div>

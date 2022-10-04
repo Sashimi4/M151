@@ -1,4 +1,4 @@
-package com.tinder.dating
+package com.tinder.dating.controller
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.messaging.handler.annotation.MessageMapping
