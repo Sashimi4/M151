@@ -24,7 +24,9 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-websocket")
-	//implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.7.3")
+	implementation("org.springframework.boot:spring-boot-starter-security:2.7.0")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.7.3")
+	implementation("org.postgresql:postgresql:42.4.0")
 	//implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.7.3")
 	implementation("org.springframework.boot:spring-boot-starter-web:2.7.3")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4")

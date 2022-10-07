@@ -1,4 +1,4 @@
-package com.tinder.dating
+package com.tinder.dating.config
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
