@@ -23,12 +23,12 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-websocket")
-	implementation("org.springframework.boot:spring-boot-starter-security:2.7.0")
+	implementation("org.springframework.boot:spring-boot-starter-websocket:2.7.4")
+	implementation("org.springframework.boot:spring-boot-starter-security:2.7.4")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.7.3")
-	implementation("org.postgresql:postgresql:42.4.0")
-	//implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.7.3")
-	implementation("org.springframework.boot:spring-boot-starter-web:2.7.3")
+	implementation("org.postgresql:postgresql:42.5.0")
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.7.3")
+	implementation("org.springframework.boot:spring-boot-starter-web:2.7.4")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.7")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -36,8 +36,8 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.4")
 	compileOnly("org.projectlombok:lombok:1.18.24")
 	annotationProcessor("org.projectlombok:lombok:1.18.24")
-	testImplementation("org.springframework.boot:spring-boot-starter-test:2.7.3")
-	testImplementation("io.projectreactor:reactor-test:3.4.22")
+	testImplementation("org.springframework.boot:spring-boot-starter-test:2.7.4")
+	testImplementation("io.projectreactor:reactor-test:3.4.23")
 }
 
 tasks.withType<KotlinCompile> {

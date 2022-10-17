@@ -1,11 +1,11 @@
 package com.tinder.dating
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
+import org.springframework.boot.SpringApplication
 
 @SpringBootApplication
 class DatingApplication
 
 fun main(args: Array<String>) {
-	runApplication<DatingApplication>(*args)
+	SpringApplication.run(DatingApplication::class.java, *args)
 }

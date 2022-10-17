@@ -1,5 +1,6 @@
-package com.tinder.dating.data
+package com.tinder.dating.sqlData
 
+import com.tinder.dating.nosqlData.Message
 import lombok.AllArgsConstructor
 import lombok.NoArgsConstructor
 import java.util.*
@@ -13,7 +14,7 @@ class User (
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "user_id")
     val id : UUID,
 
     @Column(name = "email", unique = true)
@@ -25,4 +26,10 @@ class User (
     @ManyToOne
     @JoinColumn(name = "country_id")
     val country : Country,
+
+    //@DBRef
+    //val sentMessages : Set<Message>,
+
+    //@DBRef
+    //val receivedMessages : Set<Message>
 )

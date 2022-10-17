@@ -1,8 +1,7 @@
-package com.tinder.dating.data
+package com.tinder.dating.sqlData
 
 import lombok.NoArgsConstructor
 import lombok.AllArgsConstructor
-import org.jetbrains.annotations.NotNull
 import javax.persistence.*
 
 @Entity
