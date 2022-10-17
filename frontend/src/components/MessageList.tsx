@@ -1,4 +1,4 @@
-import { Paper } from '@mui/material'
+import { Box, Paper, Stack } from '@mui/material'
 import React, { useState } from 'react'
 import MessageBlock from './MessageBlock'
 
@@ -8,18 +8,15 @@ const MessageList = () => {
     const [chats, setChats] = useState(["Sarah","Jimmy"])
 
     return (
-        <Paper elevation={0} sx={{overflow: 'scroll'}}>
-            <p>Messages</p>
-            <MessageBlock/>
-            <MessageBlock/>
-            <MessageBlock/>
-            <MessageBlock/>
-            <MessageBlock/>
-            <MessageBlock/>
-            <MessageBlock/>
-            <MessageBlock/>
-            <MessageBlock/>
-        </Paper>
+        <Box sx={{position: "absolute", top: 0, width: "30%"}}>
+            <Stack direction="column">
+                <MessageBlock/>
+                <MessageBlock/>
+                <MessageBlock/>
+                <MessageBlock/>
+                <MessageBlock/>
+            </Stack>
+        </Box>
     )
 }
 

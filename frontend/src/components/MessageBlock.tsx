@@ -1,4 +1,4 @@
-import { Avatar, Card } from '@mui/material'
+import { Avatar, Box, Card, Divider } from '@mui/material'
 import React from 'react'
 
 import Typography from '@mui/material/Typography'
@@ -17,17 +17,22 @@ const MessageBlock = (props: any) => {
     }
 
     return (
-        <Card onClick={openChat} variant="outlined"
-        sx={{
-        backgroundColor: 'black',
-        borderRadius: 0,
-        borderColor: 'red',
-        padding: "1em",
-        }}>
-            <Avatar src={"https://i.imgur.com/oPj4A8u.jpeg"} alt="Avatar"/>
-            <Typography sx={{color: 'white'}}>Janet, 38</Typography>
-            <Typography sx={{color: 'white'}}>{truncateText(lastMessage)}</Typography>
-        </Card>
+        <>
+            <Box onClick={openChat}
+            sx={{
+            backgroundColor: 'black',
+            padding: "0.5em",
+            cursor: "pointer",
+            flex: 1,
+            }}>
+                <Box sx={{flexDirection: "row"}}>
+                    <Avatar src={"https://i.imgur.com/oPj4A8u.jpeg"} alt="Avatar"/>
+                    <Typography sx={{color: 'white'}}>Janet, 38</Typography>
+                </Box>
+                <Typography sx={{color: 'white'}}>{truncateText(lastMessage)}</Typography>
+            </Box>
+            <Divider/>
+        </>
     )
 }
 

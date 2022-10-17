@@ -11,7 +11,7 @@ import MessageList from '../components/MessageList';
 import SearchShelf from '../shelf-content/SearchShelf';
 import ProfileShelf from '../shelf-content/ProfileShelf';
 import MessageShelf from '../shelf-content/MessageShelf';
-import { Paper } from '@mui/material';
+import { Box, createTheme, Paper, ThemeProvider } from '@mui/material';
 
 var stompClient: Client | null = null
 //source : https://github.com/JayaramachandranAugustin/ChatApplication/blob/main/react-client/src/components/ChatRoom.js
@@ -43,7 +43,7 @@ const Home = () => {
   const onError = (err: any) => {
     console.log(err);
   }
-  
+
   const sendValue=()=>{
     if (stompClient) {
       var chatMessage = {
@@ -54,28 +54,30 @@ const Home = () => {
     }
   }
 
+  const darkTheme = createTheme({ palette: { mode: 'dark' } });
+  const lightTheme = createTheme({ palette: { mode: 'light' } });
+
     return (
       /* Interchangeable shelf content */
-      <Paper sx={{backgroundColor: 'brown', height: '100em', width: '100%',overflow: 'hidden'}}>
-        <Grid2 container>
-          <Grid2 xs={3}>
-            <ProfileShelf/>
-            <h1>Home</h1>
-            <p>Still working</p>
-            <p>New message: {message}</p>
-            <button onClick={connect}>Connect to Server</button>
-            <button onClick={sendValue}>Send Message</button>
-            <hr></hr>
-            <hr></hr>
+      <Box sx={{width: '100%', overflowY: 'hidden'}}>
+          <Grid2 container>
+            <Grid2 xs={3}>
+              <ProfileShelf/>
+              <h1>Home</h1>
+              <p>Still working</p>
+              <p>New message: {message}</p>
+              <button onClick={connect}>Connect to Server</button>
+              <button onClick={sendValue}>Send Message</button>
+              <hr></hr>
+            </Grid2>
+            <Grid2 xs={3}>
+              <MessageList/>
+            </Grid2>
+            <Grid2 xs={6}>
+              <MessageShelf/>
+            </Grid2>
           </Grid2>
-          <Grid2 xs={3}>
-            <MessageList/>
-          </Grid2>
-          <Grid2 xs={6}>
-            <MessageShelf/>
-          </Grid2>
-        </Grid2>
-      </Paper>
+      </Box>
     );
   }
   /* Web socket logic:

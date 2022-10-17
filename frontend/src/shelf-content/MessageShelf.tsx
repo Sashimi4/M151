@@ -1,9 +1,10 @@
-import { Paper } from '@mui/material';
+import { Box, Paper, useColorScheme } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import SenderMessageItem from '../components/SenderMessageItem'
 import ReceiverMessageItem from '../components/ReceiverMessageItem'
 import TextField from '../components/TextField'
-import Grid2 from '@mui/material/Unstable_Grid2'
+import ColorScheme from '../assets/ColorScheme'
+
 
 const MessageShelf = () => {
 
@@ -18,24 +19,19 @@ const MessageShelf = () => {
   }, [messages])
 
     return (
-      <Paper elevation={0} sx={{width: '100%'}}>
-        {/* TODO: Remove Grid and just implement a Stack with Row, then have them listed after each other*/}
-        <Grid2 container>
-          <Grid2 xs={5}>
-            {/* TODO: Loop here the users recipient messages*/}
-            <ReceiverMessageItem message={"Yolo"}/>
-          </Grid2>
-          <Grid2 xs={2}>
-          </Grid2>
-          <Grid2 xs={5}>
-            {/* TODO: For testing sake ALL messages will be shown here, even receiver messages.*/}
-            {messages.map((item, i) => ( <SenderMessageItem message={item}/>))}
+      <>
+        <Box sx={{backgroundColor: ColorScheme.BACKGROUND_BLACK, paddingRight: "35px", paddingLeft: "25px", 
+        alignItems: "center", position: "absolute", bottom: 0, height: "100%", width: "46%"}}>
+          {/* TODO: Remove Grid and just implement a Stack with Row, then have them listed after each other*/}
+              {/* TODO: Loop here the users recipient messages*/}
+              <ReceiverMessageItem message={"Yolo"}/>
+              {/* TODO: For testing sake ALL messages will be shown here, even receiver messages.*/}
 
-          </Grid2>
-        </Grid2>
+              {messages.map((item, i) => ( <SenderMessageItem message={item}/>))}
 
-        <TextField addMessageComponent={addMessageComponent}/>
-      </Paper>
+          <TextField addMessageComponent={addMessageComponent}/>
+        </Box>
+      </>
     );
   }
 
