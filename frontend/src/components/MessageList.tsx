@@ -1,14 +1,14 @@
 import { Box, Paper, Stack } from '@mui/material'
 import React, { useState } from 'react'
+import ColorScheme from '../assets/ColorScheme'
 import MessageBlock from './MessageBlock'
 
 //Probably need a chat websocket
 const MessageList = () => {
 
-    const [chats, setChats] = useState(["Sarah","Jimmy"])
-
     return (
-        <Box sx={{position: "absolute", top: 0, width: "30%"}}>
+        <Box sx={{backgroundColor: ColorScheme.PURPLE, position: "absolute", top: 0, width: "33%", height: "100%"}}>
+            {/* search bar here cause why not */}
             <Stack direction="column">
                 <MessageBlock/>
                 <MessageBlock/>

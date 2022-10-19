@@ -25,9 +25,14 @@ const MessageShelf = () => {
           {/* TODO: Remove Grid and just implement a Stack with Row, then have them listed after each other*/}
               {/* TODO: Loop here the users recipient messages*/}
               <ReceiverMessageItem message={"Yolo"}/>
-              {/* TODO: For testing sake ALL messages will be shown here, even receiver messages.*/}
 
-              {messages.map((item, i) => ( <SenderMessageItem message={item}/>))}
+              {messages.map((item, i) => (
+                <Box sx={{paddingTop: "0.5em", paddingBottom: "0.5em", marginBottom: "1.5em"}}>
+                  <SenderMessageItem message={item}/>
+                </Box>
+              ))}
+
+              <ReceiverMessageItem message={"That's crazy 😁"}/>
 
           <TextField addMessageComponent={addMessageComponent}/>
         </Box>

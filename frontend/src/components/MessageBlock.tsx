@@ -25,9 +25,9 @@ const MessageBlock = (props: any) => {
             cursor: "pointer",
             flex: 1,
             }}>
-                <Box sx={{flexDirection: "row"}}>
+                <Box sx={{display: "flex", alignItems: "center"}}>
                     <Avatar src={"https://i.imgur.com/oPj4A8u.jpeg"} alt="Avatar"/>
-                    <Typography sx={{color: 'white'}}>Janet, 38</Typography>
+                    <Typography sx={{color: "white"}}>Janet, 38</Typography>
                 </Box>
                 <Typography sx={{color: 'white'}}>{truncateText(lastMessage)}</Typography>
             </Box>

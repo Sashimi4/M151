@@ -12,6 +12,7 @@ import SearchShelf from '../shelf-content/SearchShelf';
 import ProfileShelf from '../shelf-content/ProfileShelf';
 import MessageShelf from '../shelf-content/MessageShelf';
 import { Box, createTheme, Paper, ThemeProvider } from '@mui/material';
+import Navbar from '../components/Navbar';
 
 var stompClient: Client | null = null
 //source : https://github.com/JayaramachandranAugustin/ChatApplication/blob/main/react-client/src/components/ChatRoom.js
@@ -61,8 +62,9 @@ const Home = () => {
       /* Interchangeable shelf content */
       <Box sx={{width: '100%', overflowY: 'hidden'}}>
           <Grid2 container>
-            <Grid2 xs={3}>
-              <ProfileShelf/>
+            <Grid2 xs={2}>
+              {/*<ProfileShelf/>*/}
+              <Navbar/>
               <h1>Home</h1>
               <p>Still working</p>
               <p>New message: {message}</p>
@@ -70,7 +72,7 @@ const Home = () => {
               <button onClick={sendValue}>Send Message</button>
               <hr></hr>
             </Grid2>
-            <Grid2 xs={3}>
+            <Grid2 xs={4}>
               <MessageList/>
             </Grid2>
             <Grid2 xs={6}>

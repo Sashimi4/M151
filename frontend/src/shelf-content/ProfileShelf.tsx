@@ -3,45 +3,21 @@ import styled, { css } from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const ProfileShelf = () => {
-
-  const { logout } = useAuth0();
-
   //Fetching user information currently from auth0 cloud DB, will be swapped in future to external database.
   const { user, isLoading } = useAuth0();
 
-    if (isLoading) {
-      return <div>Loading ...</div>;
-    }
-
     return (
-      <Container>
+      <div>
         Profile Shelf
         <div>
           <img src={user?.picture} alt={user?.name} />
           <h2>{user?.name}</h2>
           <p>{user?.email}</p>
         </div>
-        <Button onClick={() => logout({returnTo: "http://localhost:3000/welcome"})}>
+        <button>
           Logout
-        </Button>
-      </Container>
+        </button>
+      </div>
     );
   }
-
-  const Container = styled.div`
-    //display: flex;
-    flex: 2 //testing purposes -> but should be flex: 5 like in the Figma
-    height: 50em;
-    background-color: blue;
-  `
-
-  const Button = styled.button`
-    background: transparent;
-    border-radius: 3px;
-    border: 2px solid palevioletred;
-    color: palevioletred;
-    margin: 0 1em;
-    padding: 0.25em 1em;
-  `
-
   export default ProfileShelf;
