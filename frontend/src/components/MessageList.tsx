@@ -8,6 +8,7 @@ const MessageList = () => {
 
     return (
         <Box sx={{backgroundColor: ColorScheme.PURPLE, position: "absolute", top: 0, width: "33%", height: "100%"}}>
+            
             {/* search bar here cause why not */}
             <Stack direction="column">
                 <MessageBlock/>

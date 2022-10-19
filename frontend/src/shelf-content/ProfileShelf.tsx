@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const ProfileShelf = () => {
-  //Fetching user information currently from auth0 cloud DB, will be swapped in future to external database.
   const { user, isLoading } = useAuth0();
 
     return (
