@@ -2,6 +2,8 @@ import { Avatar, Box, Card, Divider } from '@mui/material'
 import React from 'react'
 
 import Typography from '@mui/material/Typography'
+import TyporgaphyScheme from '../assets/TyporgaphyScheme'
+import ColorScheme from '../assets/ColorScheme'
 
 const MessageBlock = (props: any) => {
 
@@ -13,7 +15,7 @@ const MessageBlock = (props: any) => {
 
     //Needs more dynamic sizes instead of fixed ones => or just not have it responsive
     const truncateText = (text: string) => {
-        return text.length > 30 ? text.substring(0, 45) + "..." : text;
+        return text.length > TyporgaphyScheme.MAX_LAST_MESSAGE_LENGTH ? text.substring(0, TyporgaphyScheme.TRUNCATED_MESSAGE_LENGTH) + "..." : text;
     }
 
     return (
@@ -25,11 +27,11 @@ const MessageBlock = (props: any) => {
             cursor: "pointer",
             flex: 1,
             }}>
-                <Box sx={{display: "flex", alignItems: "center"}}>
+                <Box sx={{display: "flex", alignItems: "center", paddingBottom: "0.5em"}}>
                     <Avatar src={"https://i.imgur.com/oPj4A8u.jpeg"} alt="Avatar"/>
-                    <Typography sx={{color: "white"}}>Janet, 38</Typography>
+                    <Typography sx={{color: ColorScheme.WHITE, marginLeft: "0.5em", fontSize: "20px"}}>Janet, 38</Typography>
                 </Box>
-                <Typography sx={{color: 'white'}}>{truncateText(lastMessage)}</Typography>
+                <Typography sx={{color: ColorScheme.WHITE, fontSize: "14px"}}>{truncateText(lastMessage)}</Typography>
             </Box>
             <Divider/>
         </>

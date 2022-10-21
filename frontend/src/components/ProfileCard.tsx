@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-import Carousel from 'styled-components-carousel'
 import { AiOutlineEnvironment } from "react-icons/ai"
+import { TbHeartPlus } from "react-icons/tb"
+import { CgClose } from "react-icons/cg"
 
-import { Card, CardContent, CardMedia } from '@mui/material'
+import { Box, Card, CardContent, CardMedia, Fab } from '@mui/material'
 import Typography from '@mui/material/Typography'
+import ColorScheme from '../assets/ColorScheme'
 
-const ProfileCard = (props: any) => {
+const ProfileCard = () => {
 
     //match stands for users matches and represents other users
+    //These are the only necessary fields as of now
     const [match, setMatch] = useState({
         name: "Lorene",
         age: 26,
+        imgSrc: "https://imgur.com/OckVkRo.jpg",
         city: "Madrid",
         country: "Spain",
         aboutMe: "Hi my name is Lorene and I love long walks on the beach. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque corporis, repellendus ipsum atque quibusdam reprehenderit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem mollitia alias vitae placeat quae hic facilis consequatur cumque quod reprehenderit?"
@@ -19,20 +23,29 @@ const ProfileCard = (props: any) => {
 
     //array of users -> grab like 5 and then reload or just always grab a new one.
     return (
-        <Card>
-            <CardMedia
-                component="img"
-                image="https://imgur.com/OckVkRo.jpg"
-                height="100%"
-                width="100%"
-                alt="Profile Picture"
-            />
-            <CardContent>
-                <Typography>{match.name}, {match.age}</Typography>
-                <Typography><AiOutlineEnvironment/> {match.country} | {match.city} </Typography>
-                <Typography>{match.aboutMe}</Typography>
-            </CardContent>
-        </Card>
+        <>
+            <Box sx={{backgroundColor: ColorScheme.BLACK, padding: "1em", marginTop: "1em", width: "60%"}}>
+                <img src={`${match.imgSrc}`} srcSet={`${match.imgSrc}`} style={{width: 350, height: 550, objectFit: "cover"}} alt="Profile Picture"/>
+                    <Box>
+                        <Typography sx={{color: ColorScheme.WHITE, fontSize: "25px"}}>{match.name}, {match.age}</Typography>
+                        <Box sx={{display: "flex", alignItems: "center", marginBottom: "0.8em"}}>
+                            <AiOutlineEnvironment color={ColorScheme.WHITE}/>
+                            <Typography sx={{color: ColorScheme.WHITE, fontSize: "15px", marginLeft: "0.5em"}}> {match.country} | {match.city} </Typography>
+                        </Box>
+                    </Box>
+                    <Fab aria-label="Like"
+                    size="medium"
+                    sx={{backgroundColor: ColorScheme.BACKGROUND_BLACK, color: ColorScheme.WHITE, marginRight: "5px"}}>
+                        <TbHeartPlus color={ColorScheme.HEART_GREEN} size={24}/>
+                    </Fab>
+                    <Fab aria-label="Dislike"
+                    size="medium"
+                    sx={{backgroundColor: ColorScheme.BACKGROUND_BLACK, color: ColorScheme.WHITE, marginRight: "5px"}}>
+                        <CgClose color={ColorScheme.CLOSE_RED} size={24}/>
+                    </Fab>
+                <Typography sx={{color: ColorScheme.WHITE}}>{match.aboutMe}</Typography>
+            </Box>
+        </>
     )
 }
 

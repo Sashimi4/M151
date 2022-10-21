@@ -55,8 +55,7 @@ const Home = () => {
     }
   }
 
-  const darkTheme = createTheme({ palette: { mode: 'dark' } });
-  const lightTheme = createTheme({ palette: { mode: 'light' } });
+  //TODO() = Replace static text with strings from "AppStaticStrings"
 
     return (
       /* Interchangeable shelf content */
@@ -76,7 +75,7 @@ const Home = () => {
               <MessageList/>
             </Grid2>
             <Grid2 xs={6}>
-              <MessageShelf/>
+              <SearchShelf/>
             </Grid2>
           </Grid2>
       </Box>

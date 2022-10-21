@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { Box, Button, Typography } from '@mui/material'
 import React from 'react'
+import AppStaticStrings from '../assets/AppStaticStrings'
 import ColorScheme from '../assets/ColorScheme'
 import NavbarItems from './NavbarItems'
 import UserProfileCard from './UserProfileCard'
@@ -20,7 +21,7 @@ const Navbar = () => {
                         <Button sx={{background: "red", borderRadius: "10px", border: `2px solid ${ColorScheme.WHITE}`,
                         color: ColorScheme.WHITE, width: "100%"}}
                         onClick={() => logout({returnTo: "http://localhost:3000/welcome"})}>
-                            <Typography>Sign out</Typography>
+                            <Typography>{AppStaticStrings.NAVBAR_LOGOUT_BUTTON}</Typography>
                         </Button>
                     </Box>
                 </Box>
