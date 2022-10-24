@@ -28,7 +28,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.7.4")
 	//implementation("org.hibernate.ogm:hibernate-ogm-mongodb:5.4.1.Final")
 	implementation("org.postgresql:postgresql:42.5.0")
-	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.7.4")
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb:2.7.4")
 	implementation("org.springframework.boot:spring-boot-starter-web:2.7.4")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.7")

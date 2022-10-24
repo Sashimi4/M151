@@ -1,4 +1,4 @@
-package com.tinder.dating.controller
+package com.tinder.dating.nosqlData.controller
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.messaging.handler.annotation.Header
@@ -18,6 +18,7 @@ import java.security.Principal
 @RestController
 class WebSocketTextMessageController {
 
+    /*
     @Autowired
     var template: SimpMessagingTemplate? = null
 
@@ -31,5 +32,6 @@ class WebSocketTextMessageController {
         print("Received message: $message")
         print("User who invoked the call: $user")
     }
-    
+     */
+
 }

@@ -9,8 +9,6 @@ import javax.persistence.*
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Table(name = "country")
 class Country (
 

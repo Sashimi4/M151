@@ -10,8 +10,6 @@ import javax.persistence.*
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Table(name = "role")
 class Role (
 

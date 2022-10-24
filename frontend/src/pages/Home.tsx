@@ -23,16 +23,16 @@ const Home = () => {
 
   const [message, setMessage] = useState("empty")
 
-  /* use effect must be moved to single shelf + additionally in the message list if a message got updated
+  // use effect must be moved to single shelf + additionally in the message list if a message got updated
   useEffect(() => {
     console.log(message)
   }, [message])
-  */
 
-  useEffect(() => {
+
+  /*useEffect(() => {
     console.log(`final state: ${activeShelfState}`)
   }, [activeShelfState])
-
+  */
   const connect = () => {
     var socket = new SockJS("http://localhost:8080/ws-message")
     stompClient = over(socket)
@@ -41,13 +41,14 @@ const Home = () => {
 
   const onConnected = () => {
     stompClient?.subscribe('/communication', onMessageReceived);
+    stompClient?.subscribe('/user/queue/private-messages', onMessageReceived);
   }
 
   const onMessageReceived = (payload: { body: string; })=>{
     var payloadData = JSON.parse(payload.body);
     console.log(payload)
     setMessage(payload.body)
-}
+  }
 
   const onError = (err: any) => {
     console.log(err);
@@ -59,7 +60,7 @@ const Home = () => {
         message: "sascha",
       };
       console.log(chatMessage);
-      stompClient.send("/message", {}, JSON.stringify(chatMessage));
+      stompClient.send("/private-messages", {}, JSON.stringify(chatMessage));
     }
   }
 
@@ -95,13 +96,7 @@ const Home = () => {
                     return null
                 }
               })()*/}
-              <h1>Home</h1>
-              <p>Still working</p>
-              <p>New message: {message}</p>
-              <button onClick={connect}>Connect to Server</button>
-              <button onClick={sendValue}>Send Message</button>
-              <hr></hr>
-              <hr></hr>
+              <MessageShelf/>
             </Grid2>
           </Grid2>
       </Box>

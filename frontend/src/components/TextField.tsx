@@ -33,6 +33,7 @@ const TextField = (props: any) => {
                     onClick={() => {
                         console.log("button pressed")
                         props.addMessageComponent(message)
+                        props.sendMessage(message)
                         setMessage("")
                     }}>
                         <FiSend/>

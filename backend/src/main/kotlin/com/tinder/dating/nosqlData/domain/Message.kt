@@ -5,22 +5,30 @@ import lombok.AllArgsConstructor
 import lombok.NoArgsConstructor
 import org.springframework.data.mongodb.core.mapping.Document
 import java.math.BigInteger
+import java.sql.Date
 import java.sql.Timestamp
+import java.util.*
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "message")
 class Message (
 
-    val id : BigInteger,
+    var id : UUID,
 
-    val content : String,
+    var chatId : String,
 
-    val sender_id : User,
+    var senderId : UUID,
 
-    val receiver_id : User,
+    var senderName : String,
 
-    //val status : MessageStatus
+    var receiverId : UUID,
 
-    val timestamp: Timestamp,
+    var receiverName : String,
+
+    var content : String,
+
+    var timestamp: Date,
+
+    var status: MessageStatus,
         )

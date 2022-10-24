@@ -1,5 +1,7 @@
 import { Box, Paper, useColorScheme } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { Client, over } from 'stompjs';
+import SockJS from 'sockjs-client';
 import SenderMessageItem from '../components/SenderMessageItem'
 import ReceiverMessageItem from '../components/ReceiverMessageItem'
 import TextField from '../components/TextField'
@@ -13,6 +15,56 @@ const MessageShelf = () => {
   const addMessageComponent = (message: string) => {
     setMessages([...messages, message])
   }
+
+  // websocket connection start
+
+  const [newMessage, setNewMessage] = useState("")
+
+  var stompClient: Client | null = null
+
+  const onConnected = () => {
+    console.log("websocket connected")
+
+    stompClient?.subscribe('/user/' + '3c5ecfe5-5995-400a-bd19-f746c06b21e0' + '/queue/messages', onMessageReceived);
+  }
+
+  const sendMessage = (newMessage: string) => {
+    console.log(newMessage);
+    if (stompClient) {
+      if(newMessage.trim() !== "") {
+
+        const message = {
+          senderId: "3c5ecfe5-5995-400a-bd19-f746c06b21e0",//
+          recipientId: "b192620f-824e-476a-b438-5769a128c31b",
+          senderName: "Sarah",
+          recipientName: "Janet",
+          content: newMessage,
+          timestamp: new Date(),
+        }
+
+        console.log(message);
+        stompClient.send("/chat", {}, JSON.stringify(message));
+      }
+    }
+  }
+
+  const onMessageReceived = (payload: { body: string; })=>{
+    var payloadData = JSON.parse(payload.body)
+    console.log(payload)
+    addMessageComponent(payload.body)
+  }
+
+  const onError = (err: any) => {
+    console.log(err);
+  }
+
+  useEffect(() => {
+    const sockJS = new SockJS("http://localhost:8080/ws-message")
+    stompClient = over(sockJS)
+    stompClient.connect({}, onConnected, onError)
+  }, [])
+  
+  // websocket connection end
 
   useEffect(() => {
     console.log("messages updated")
@@ -34,7 +86,7 @@ const MessageShelf = () => {
 
               <ReceiverMessageItem message={"That's crazy 😁"}/>
 
-          <TextField addMessageComponent={addMessageComponent}/>
+          <TextField addMessageComponent={addMessageComponent} sendMessage={sendMessage}/>
         </Box>
       </>
     );

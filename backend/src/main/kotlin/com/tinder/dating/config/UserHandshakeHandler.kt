@@ -20,5 +20,5 @@ class UserHandshakeHandler: DefaultHandshakeHandler() {
         val randomID: String = UUID.randomUUID().toString()
         LOG.info("User with ID $randomID opened the page")
         return UserPrincipal({ randomID })
-    }
+    } //here we want to grab the information of the user instead of just a random user. -> we want the mongodb user containing all messages
 }
