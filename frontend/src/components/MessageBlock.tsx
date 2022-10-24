@@ -9,10 +9,6 @@ const MessageBlock = (props: any) => {
 
     const lastMessage = "Yoo That's super cool, I would be in town next week so we could potentially meet up."
 
-    const openChat = () => {
-        console.log("Chat opened")
-    }
-
     //Needs more dynamic sizes instead of fixed ones => or just not have it responsive
     const truncateText = (text: string) => {
         return text.length > TyporgaphyScheme.MAX_LAST_MESSAGE_LENGTH ? text.substring(0, TyporgaphyScheme.TRUNCATED_MESSAGE_LENGTH) + "..." : text;
@@ -20,7 +16,7 @@ const MessageBlock = (props: any) => {
 
     return (
         <>
-            <Box onClick={openChat}
+            <Box onClick={props.openChat}
             sx={{
             backgroundColor: 'black',
             padding: "0.5em",

@@ -1,6 +1,6 @@
-package com.tinder.dating.nosqlData
+package com.tinder.dating.nosqlData.domain
 
-import com.tinder.dating.sqlData.User
+import com.tinder.dating.sqlData.domain.User
 import lombok.AllArgsConstructor
 import lombok.NoArgsConstructor
 import org.springframework.data.mongodb.core.mapping.Document

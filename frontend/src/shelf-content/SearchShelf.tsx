@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 import { Box } from '@mui/material';
 import ColorScheme from '../assets/ColorScheme';
 
+//AppState = HOME
 const SearchShelf = () => {
 
     return (

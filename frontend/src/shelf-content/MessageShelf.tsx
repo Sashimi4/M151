@@ -5,7 +5,7 @@ import ReceiverMessageItem from '../components/ReceiverMessageItem'
 import TextField from '../components/TextField'
 import ColorScheme from '../assets/ColorScheme'
 
-
+//AppState = CHAT
 const MessageShelf = () => {
 
   const [messages, setMessages] = useState(["First message"])
@@ -24,7 +24,7 @@ const MessageShelf = () => {
         alignItems: "center", position: "absolute", bottom: 0, height: "100%", width: "46%"}}>
           {/* TODO: Remove Grid and just implement a Stack with Row, then have them listed after each other*/}
               {/* TODO: Loop here the users recipient messages*/}
-              <ReceiverMessageItem message={"Yolo"}/>
+              <ReceiverMessageItem message={"Yolo 😜"}/>
 
               {messages.map((item, i) => (
                 <Box sx={{paddingTop: "0.5em", paddingBottom: "0.5em", marginBottom: "1.5em"}}>

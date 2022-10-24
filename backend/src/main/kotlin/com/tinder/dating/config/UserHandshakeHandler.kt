@@ -16,7 +16,7 @@ class UserHandshakeHandler: DefaultHandshakeHandler() {
         request: ServerHttpRequest,
         wsHandler: WebSocketHandler,
         attributes: MutableMap<String, Any>
-    ): Principal? {
+    ): Principal {
         val randomID: String = UUID.randomUUID().toString()
         LOG.info("User with ID $randomID opened the page")
         return UserPrincipal({ randomID })

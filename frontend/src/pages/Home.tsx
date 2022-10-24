@@ -6,24 +6,32 @@ import { withAuthenticationRequired } from '@auth0/auth0-react';
 
 import Grid2 from '@mui/material/Unstable_Grid2';
 
-import ProfileCard from '../components/ProfileCard';
 import MessageList from '../components/MessageList';
 import SearchShelf from '../shelf-content/SearchShelf';
 import ProfileShelf from '../shelf-content/ProfileShelf';
 import MessageShelf from '../shelf-content/MessageShelf';
 import { Box, createTheme, Paper, ThemeProvider } from '@mui/material';
 import Navbar from '../components/Navbar';
+import AppState from '../assets/AppStates';
 
 var stompClient: Client | null = null
 //source : https://github.com/JayaramachandranAugustin/ChatApplication/blob/main/react-client/src/components/ChatRoom.js
 
 const Home = () => {
 
+  const [activeShelfState, setActiveShelfState] = useState(AppState.HOME)
+
   const [message, setMessage] = useState("empty")
 
+  /* use effect must be moved to single shelf + additionally in the message list if a message got updated
   useEffect(() => {
     console.log(message)
   }, [message])
+  */
+
+  useEffect(() => {
+    console.log(`final state: ${activeShelfState}`)
+  }, [activeShelfState])
 
   const connect = () => {
     var socket = new SockJS("http://localhost:8080/ws-message")
@@ -45,7 +53,7 @@ const Home = () => {
     console.log(err);
   }
 
-  const sendValue=()=>{
+  const sendValue = () => {
     if (stompClient) {
       var chatMessage = {
         message: "sascha",
@@ -55,32 +63,51 @@ const Home = () => {
     }
   }
 
-  //TODO() = Replace static text with strings from "AppStaticStrings"
+  const updateAppState = (state: AppState) => {
+    console.log(`state in home page: ${state}`)
+    setActiveShelfState(state)
+  }
+
+  // TODO() = Replace static text with strings from "AppStaticStrings"
 
     return (
       /* Interchangeable shelf content */
       <Box sx={{width: '100%', overflowY: 'hidden'}}>
           <Grid2 container>
             <Grid2 xs={2}>
-              {/*<ProfileShelf/>*/}
-              <Navbar/>
+              <Navbar updateAppState={updateAppState}/>
+            </Grid2>
+            <Grid2 xs={4}>
+              <MessageList updateAppState={updateAppState}/>
+            </Grid2>
+            <Grid2 xs={6}>
+              {/* swap content out here */}
+              {/*
+              (() => {
+                switch(activeShelfState) {
+                  case AppState.HOME: 
+                    return <SearchShelf/>
+                  case AppState.CHAT:
+                    return <MessageShelf/>
+                  case AppState.PROFILE:
+                    return <ProfileShelf/>
+                  default:
+                    return null
+                }
+              })()*/}
               <h1>Home</h1>
               <p>Still working</p>
               <p>New message: {message}</p>
               <button onClick={connect}>Connect to Server</button>
               <button onClick={sendValue}>Send Message</button>
               <hr></hr>
-            </Grid2>
-            <Grid2 xs={4}>
-              <MessageList/>
-            </Grid2>
-            <Grid2 xs={6}>
-              <SearchShelf/>
+              <hr></hr>
             </Grid2>
           </Grid2>
       </Box>
     );
   }
+
   /* Web socket logic:
   
         <h1>Home</h1>

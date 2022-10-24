@@ -31,11 +31,5 @@ class WebSocketTextMessageController {
         print("Received message: $message")
         print("User who invoked the call: $user")
     }
-
-    /*@MessageMapping("/private-message")
-    fun recMessage(@Payload message: String): String {
-        template.convertAndSendToUser()
-        print("Received message: $message")
-        return message
-    }*/
+    
 }

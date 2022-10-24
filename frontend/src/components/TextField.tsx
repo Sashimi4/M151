@@ -12,7 +12,7 @@ const TextField = (props: any) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMessage(event.target.value)
     }
-    //position: "fixed", bottom: 0,
+    
     return (
         <>
             <Box
