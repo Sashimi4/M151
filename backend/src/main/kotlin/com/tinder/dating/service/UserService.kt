@@ -1,4 +1,4 @@
-package com.tinder.dating.sqlData.service
+package com.tinder.dating.service
 
 import com.tinder.dating.sqlData.repo.UserRepository
 import org.springframework.beans.factory.annotation.Autowired

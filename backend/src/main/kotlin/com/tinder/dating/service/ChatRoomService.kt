@@ -1,4 +1,4 @@
-package com.tinder.dating.nosqlData.service
+package com.tinder.dating.service
 
 import com.tinder.dating.nosqlData.domain.ChatRoom
 import com.tinder.dating.nosqlData.repo.ChatRoomRepository

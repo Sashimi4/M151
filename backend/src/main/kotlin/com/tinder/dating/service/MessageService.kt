@@ -1,4 +1,4 @@
-package com.tinder.dating.nosqlData.service
+package com.tinder.dating.service
 
 import com.tinder.dating.exception.ResourceNotFoundException
 import com.tinder.dating.nosqlData.domain.Message

@@ -1,9 +1,9 @@
-package com.tinder.dating.nosqlData.controller
+package com.tinder.dating.controller
 
 import com.tinder.dating.nosqlData.domain.ChatNotification
 import com.tinder.dating.nosqlData.domain.Message
-import com.tinder.dating.nosqlData.service.ChatRoomService
-import com.tinder.dating.nosqlData.service.MessageService
+import com.tinder.dating.service.ChatRoomService
+import com.tinder.dating.service.MessageService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.messaging.handler.annotation.MessageMapping
