@@ -1,4 +1,3 @@
-/*
 package com.tinder.dating.config
 
 import com.mongodb.ConnectionString
@@ -25,7 +24,7 @@ class NoSQLDBConfig: AbstractMongoClientConfiguration() {
     }
 
     override fun mongoClient(): MongoClient {
-        val connectionString = ConnectionString("mongodb+srv://sascha:Tinder2.0App@firstcluster.5u8vnqw.mongodb.net/tinder-app")
+        val connectionString = ConnectionString("mongodb+srv://sascha:Tinder2.0App@firstcluster.5u8vnqw.mongodb.net/tinder-app?retryWrites=true&w=majority")//"mongodb+srv://firstcluster.5u8vnqw.mongodb.net:27017/tinder-app/user=sascha&password=Tinder2.0App&sslmode=require"
         return MongoClients.create(
             MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
@@ -38,4 +37,3 @@ class NoSQLDBConfig: AbstractMongoClientConfiguration() {
         return Collections.singleton("com.tinder.dating.nosqlData")
     }
 }
- */

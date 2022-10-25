@@ -2,10 +2,10 @@ package com.tinder.dating
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.SpringApplication
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
+import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
+import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
 
-@SpringBootApplication(scanBasePackages = [ "com.tinder.dating" ])
-@EnableMongoRepositories
+@SpringBootApplication(exclude = [MongoAutoConfiguration::class, MongoDataAutoConfiguration::class])
 class DatingApplication
 
 fun main(args: Array<String>) {
