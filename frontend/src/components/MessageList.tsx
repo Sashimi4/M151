@@ -7,15 +7,9 @@ import MessageBlock from './MessageBlock'
 //Probably need a chat websocket
 const MessageList = (props: any) => {
 
-    const [appState, setAppState] = useState(AppState.CHAT)
-
-    const navigateShelf = (state: AppState) => {
-        props.updateAppState(state)
-    }
-
     const openChat = () => {
-        setAppState(AppState.CHAT)
-        navigateShelf(appState)
+        props.setActiveShelf(AppState.CHAT)
+        //grab user logic
     }
 
     return (

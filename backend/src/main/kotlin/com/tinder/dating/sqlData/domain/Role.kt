@@ -1,17 +1,15 @@
 package com.tinder.dating.sqlData.domain
 
 import lombok.AllArgsConstructor
-import lombok.Getter
 import lombok.NoArgsConstructor
-import lombok.Setter
 import java.util.*
 import javax.persistence.*
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "role")
-class Role (
+@Table(name = "role", schema="tinder")
+data class Role (
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

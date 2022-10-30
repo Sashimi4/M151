@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { Box, Button, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AppState from '../assets/AppStates'
 import AppStaticStrings from '../assets/AppStaticStrings'
 import ColorScheme from '../assets/ColorScheme'
@@ -9,18 +9,14 @@ import UserProfileCard from './UserProfileCard'
 
 const Navbar = (props: any) => {
     
-  const { logout } = useAuth0();
+    const { logout } = useAuth0();
 
-  const [appState, setAppState] = useState(AppState.CHAT)
+    const openShelf = (state: AppState) => {
+    props.setActiveShelf(state)
+    }
 
-  const navigateShelf = (state: AppState) => {
-    props.updateAppState(state)
-  }
-
-  const openShelf = (state: AppState) => {
-    setAppState(state)
-    navigateShelf(appState)
-}
+    useEffect(() => {
+    }, [])
 
     return (
         <>

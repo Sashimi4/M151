@@ -17,7 +17,7 @@ const MessageShelf = () => {
   }
 
   // websocket connection start
-
+  
   const [newMessage, setNewMessage] = useState("")
 
   var stompClient: Client | null = null
@@ -25,7 +25,15 @@ const MessageShelf = () => {
   const onConnected = () => {
     console.log("websocket connected")
 
-    stompClient?.subscribe('/user/' + '3c5ecfe5-5995-400a-bd19-f746c06b21e0' + '/queue/messages', onMessageReceived);
+    var url = stompClient?.ws.url;
+    url = url?.replace(
+      "ws://localhost:8080/chatroom",  "");
+    url = url?.replace("/websocket", "");
+    url = url?.replace(/^[0-9]+\//, "");
+    console.log("Your current session is: " + url);
+    const sessionId = url;
+
+    stompClient?.subscribe("/user/queue/direct-message" + "-user" + sessionId, onMessageReceived);
   }
 
   const sendMessage = (newMessage: string) => {
@@ -59,7 +67,7 @@ const MessageShelf = () => {
   }
 
   useEffect(() => {
-    const sockJS = new SockJS("http://localhost:8080/ws-message")
+    const sockJS = new SockJS("http://localhost:8080/chatroom")
     stompClient = over(sockJS)
     stompClient.connect({}, onConnected, onError)
   }, [])

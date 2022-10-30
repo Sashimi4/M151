@@ -2,10 +2,12 @@ package com.tinder.dating.controller
 
 import com.tinder.dating.nosqlData.domain.ChatNotification
 import com.tinder.dating.nosqlData.domain.Message
+import com.tinder.dating.nosqlData.domain.MessageStatus
 import com.tinder.dating.service.ChatRoomService
 import com.tinder.dating.service.MessageService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
+import org.springframework.messaging.handler.annotation.Header
 import org.springframework.messaging.handler.annotation.MessageMapping
 import org.springframework.messaging.handler.annotation.Payload
 import org.springframework.messaging.simp.SimpMessagingTemplate
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import java.security.Principal
 import java.util.*
 
 @CrossOrigin(origins = ["http://localhost:8080", "http://localhost:3000"],
@@ -27,7 +31,10 @@ class ChatController @Autowired constructor(
 ) {
 
     @MessageMapping("/chat")
-    fun processMessage(@Payload message: Message) {
+    fun processMessage(@Payload message: String, user: Principal, @Header("simpSessionId") sessionId: String) {
+
+        print("Message received")
+        /*
         message.id = UUID.randomUUID()
         val chatId = chatRoomService.getChatId(message.senderId, message.receiverId, true)
 
@@ -38,9 +45,10 @@ class ChatController @Autowired constructor(
         print(message)
 
         val savedMessage: Message = messageService.saveMessage(message)
+         */
 
         messagingTemplate.convertAndSendToUser(
-            message.receiverId.toString(), "/queue/messages", ChatNotification(savedMessage.id, savedMessage.senderId, savedMessage.senderName)
+            "", "/user/queue/direct-message", message//ChatNotification(savedMessage.id, savedMessage.senderId, savedMessage.senderName)
         )
     }
 
@@ -65,6 +73,17 @@ class ChatController @Autowired constructor(
         @PathVariable id: UUID
     ): ResponseEntity<Any> {
         return ResponseEntity.ok(messageService.findById(id))
+    }
+
+    @GetMapping("/ring")
+    fun test(): ResponseEntity<Any> {
+        return ResponseEntity.ok("You called me?")
+    }
+
+    @PostMapping("/saveMessage")
+    fun test1(): ResponseEntity<Message> {
+        val message = messageService.saveMessage(Message(UUID.randomUUID(), "${UUID.randomUUID()}-${UUID.randomUUID()}", UUID.randomUUID(), "Jonah", UUID.randomUUID(), "Sarah", "Message here crazy I know but still keep it up", java.sql.Date(System.currentTimeMillis()), MessageStatus.RECEIVED))
+        return ResponseEntity.ok(message)
     }
 
 }

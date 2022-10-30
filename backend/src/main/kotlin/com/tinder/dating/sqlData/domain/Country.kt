@@ -9,7 +9,7 @@ import javax.persistence.*
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "country")
+@Table(name = "country", schema="tinder")
 class Country (
 
     @Id
