@@ -19,10 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import java.security.Principal
 import java.util.*
 
-@CrossOrigin(origins = ["http://localhost:8080", "http://localhost:3000"],
-    allowedHeaders = ["Requestor-Type"],
-    exposedHeaders = ["X-Get-Header"]
-)
 @Controller
 class ChatController @Autowired constructor(
     private val messagingTemplate: SimpMessagingTemplate,
@@ -60,14 +56,6 @@ class ChatController @Autowired constructor(
         return ResponseEntity.ok(messageService.countNewMessages(senderId, receiverId))
     }
 
-    @GetMapping("/messages/{senderId}/{receiverId}")
-    fun findChatMessages(
-        @PathVariable senderId: UUID,
-        @PathVariable receiverId: UUID
-    ): ResponseEntity<Any> {
-        return ResponseEntity.ok(messageService.findChatMessages(senderId,receiverId))
-    }
-
     @GetMapping("/messages/{id}")
     fun findMessage(
         @PathVariable id: UUID
@@ -75,14 +63,22 @@ class ChatController @Autowired constructor(
         return ResponseEntity.ok(messageService.findById(id))
     }
 
+
+    //Tests
     @GetMapping("/ring")
     fun test(): ResponseEntity<Any> {
         return ResponseEntity.ok("You called me?")
     }
 
+    @GetMapping("/getAllMessages")
+    fun test1(): ResponseEntity<Any> {
+        val messages = messageService.messageRepository.findAll()
+        return ResponseEntity.ok(messages)
+    }
+
     @PostMapping("/saveMessage")
-    fun test1(): ResponseEntity<Message> {
-        val message = messageService.saveMessage(Message(UUID.randomUUID(), "${UUID.randomUUID()}-${UUID.randomUUID()}", UUID.randomUUID(), "Jonah", UUID.randomUUID(), "Sarah", "Message here crazy I know but still keep it up", java.sql.Date(System.currentTimeMillis()), MessageStatus.RECEIVED))
+    fun test2(): ResponseEntity<Message> {
+        val message = messageService.saveMessage(Message(UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(), "Jonah", UUID.randomUUID(), "Sarah", "Message here crazy I know but still keep it up", java.sql.Date(System.currentTimeMillis()), MessageStatus.RECEIVED))
         return ResponseEntity.ok(message)
     }
 

@@ -14,4 +14,8 @@ class UserService @Autowired constructor(
         return userRepository.findAll()
     }
 
+    fun findUserByEmail(email: String): User {
+        return userRepository.findUserByEmail(email)
+    }
+
 }

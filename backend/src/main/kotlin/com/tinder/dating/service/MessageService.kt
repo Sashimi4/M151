@@ -30,22 +30,6 @@ class MessageService @Autowired constructor(
         return messageRepository.countBySenderIdAndReceiverIdAndStatus(senderId, receiverId, MessageStatus.RECEIVED)
     }
 
-    fun findChatMessages(senderId: UUID, receiverId: UUID): List<Message>? {
-        val chatId = chatRoomService.getChatId(senderId, receiverId, false)
-
-        val messages = chatId!!.map { cId: String ->
-            messageRepository.findByChatId(
-                cId
-            )
-        }.orElse(ArrayList<Message>())
-
-        if (messages.isNotEmpty()) {
-            updateStatuses(senderId, receiverId, MessageStatus.DELIVERED)
-        }
-
-        return messages
-    }
-
     fun findById(id: UUID): Message? {
         return messageRepository
             .findById(id)

@@ -10,11 +10,11 @@ import java.util.*
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "message")
-class Message (
+data class Message (
 
     var id : UUID,
 
-    var chatId : String,
+    var chatId : UUID, //FK from chatRoom
 
     var senderId : UUID,
 

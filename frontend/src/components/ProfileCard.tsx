@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { AiOutlineEnvironment } from "react-icons/ai"
 import { TbHeartPlus } from "react-icons/tb"
@@ -7,8 +7,12 @@ import { CgClose } from "react-icons/cg"
 import { Box, Card, CardContent, CardMedia, Fab } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import ColorScheme from '../assets/ColorScheme'
+import axios from 'axios'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const ProfileCard = () => {
+
+    const { getAccessTokenWithPopup } = useAuth0();
 
     //match stands for users matches and represents other users
     //These are the only necessary fields as of now
@@ -20,6 +24,33 @@ const ProfileCard = () => {
         country: "Spain",
         aboutMe: "Hi my name is Lorene and I love long walks on the beach. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque corporis, repellendus ipsum atque quibusdam reprehenderit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem mollitia alias vitae placeat quae hic facilis consequatur cumque quod reprehenderit?"
     })
+
+    const retreiveToken = async () => {
+        const accessToken = await getAccessTokenWithPopup({
+            domain: "dev-opmozjaa.us.auth0.com",
+            client_id: "c2myyEju3WbyPYQLqrzTb5wdqoxBbqsF",
+            audience: "https://tinder.space.com",
+        })
+        return accessToken
+    }
+
+    //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch -> available options
+    const fetchUserProfile = async () => {
+        const response = await fetch("http://localhost:8080/profile/Janet", {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Basic ${retreiveToken}`
+            },
+        })
+        console.log("response: " + response)
+    }
+
+    useEffect(() => {
+        fetchUserProfile()
+    }, [])
 
     //array of users -> grab like 5 and then reload or just always grab a new one.
     return (

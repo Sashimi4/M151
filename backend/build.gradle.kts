@@ -24,7 +24,9 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-websocket:2.7.4")
-	//implementation("org.springframework.boot:spring-boot-starter-security:2.7.4")
+	implementation("org.springframework.boot:spring-boot-starter-security:2.7.4")
+	implementation("org.springframework.security:spring-security-oauth2-resource-server")
+	implementation("org.springframework.security:spring-security-oauth2-jose")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.7.4")
 	implementation("org.hibernate.ogm:hibernate-ogm-mongodb:5.4.1.Final")
 	implementation("org.postgresql:postgresql:42.5.0")
