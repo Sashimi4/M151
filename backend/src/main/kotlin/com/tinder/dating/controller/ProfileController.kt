@@ -55,10 +55,10 @@ class ProfileController @Autowired constructor(
     }
 
     @GetMapping("/profile/{name}")
-    //@PreAuthorize("hasAuthority('create:messages')")
-    fun retrieveProfiles(@PathVariable(value = "name") name:String): ResponseEntity<Profile> {
-        val profile = profileService.fetchProfileByName(name)
-        return ResponseEntity.ok(profile)
+    //@PreAuthorize("hasAuthority('create:messages')") => this works now
+    fun retrieveProfiles(@PathVariable(value = "name") name: String): String {
+        val profile: Profile = profileService.fetchProfileByName(name)
+        return profile.aboutDescription.toString()
     }
 
 }

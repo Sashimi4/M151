@@ -6,11 +6,11 @@ import java.util.*
 
 @Document(collection = "profile")
 data class Profile (
-    private val id: UUID,
-    private val usersId: UUID,
-    private val name: String,
-    private val photoUrl: String,
-    private val aboutDescription: String,
-    private val gender: GENDERTYPE,
-    private val genderPreference: GENDERTYPE,
+    val id: UUID,
+    val usersId: UUID,
+    val name: String,
+    val photoUrl: String,
+    val aboutDescription: String,
+    val gender: GENDERTYPE,
+    val genderPreference: GENDERTYPE,
 )

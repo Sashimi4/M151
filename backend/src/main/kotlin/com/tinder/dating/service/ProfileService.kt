@@ -13,7 +13,6 @@ class ProfileService @Autowired constructor(
 ) {
 
     fun saveProfile(profile: Profile): Profile {
-        //error handling
         return profileRepository.save(profile)
     }
 

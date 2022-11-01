@@ -8,7 +8,6 @@ import java.util.*
 @Repository
 interface ProfileRepository: MongoRepository<Profile, UUID> {
 
-
     fun findByGenderAndGenderPreference(): List<Profile>
 
     fun findProfileByName(name: String): Profile

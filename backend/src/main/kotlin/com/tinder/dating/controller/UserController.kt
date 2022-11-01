@@ -6,6 +6,7 @@ import com.tinder.dating.sqlData.repo.CountryRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.messaging.handler.annotation.Payload
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
@@ -40,8 +41,8 @@ class UserController @Autowired constructor(
     }
 
     // Country Controllers
-
     @GetMapping("/countries")
+    @PreAuthorize("hasAuthority('create:messages')")
     fun getAllCountryOptions(): MutableIterable<String> {
         val countries = countryRepository.findAll()
         val countryNames = mutableListOf<String>()
