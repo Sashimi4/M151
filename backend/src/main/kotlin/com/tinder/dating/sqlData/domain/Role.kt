@@ -14,7 +14,7 @@ data class Role (
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "role_id")
-    val id : UUID,
+    val roleId : UUID,
 
     @Column(name = "role_name", unique = true, nullable = false)
     val roleName : String,
