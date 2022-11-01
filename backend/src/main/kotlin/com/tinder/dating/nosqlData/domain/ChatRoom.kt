@@ -5,8 +5,8 @@ import java.util.*
 
 @Document(collection = "chatroom")
 data class ChatRoom (
-    private val id: UUID,
-    private val senderId: UUID,
-    private val receiverId: UUID,
-    private val matchId: UUID,
+    val id: UUID,
+    val senderId: UUID,
+    val receiverId: UUID,
+    val matchId: UUID,
 )

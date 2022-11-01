@@ -26,21 +26,10 @@ const MessageShelf = (props: any) => {
   var stompClient: Client | null = null
 
   const onConnected = () => {
-    console.log("websocket connected")
-
-    var url = stompClient?.ws.url;
-    url = url?.replace(
-      "ws://localhost:8080/chatroom",  "");
-    url = url?.replace("/websocket", "");
-    url = url?.replace(/^[0-9]+\//, "");
-    console.log("Your current session is: " + url);
-    const sessionId = url;
-
-    stompClient?.subscribe("/user/queue/direct-message" + "-user" + sessionId, onMessageReceived);
+    stompClient?.subscribe("/user/queue/direct-message" + "-user", onMessageReceived);
   }
 
   const sendMessage = (newMessage: string) => {
-    console.log(newMessage);
     if (stompClient) {
       if(newMessage.trim() !== "") {
 
@@ -53,15 +42,14 @@ const MessageShelf = (props: any) => {
           timestamp: new Date(),
         }
 
-        console.log(message);
         stompClient.send("/chat", {}, JSON.stringify(message));
       }
     }
   }
 
-  const onMessageReceived = (payload: { body: string; })=>{
-    var payloadData = JSON.parse(payload.body)
-    console.log(payload)
+  const onMessageReceived = (payload: any) => {
+    var message = JSON.parse(payload.body)
+
     addMessageComponent(payload.body)
   }
 
@@ -79,11 +67,8 @@ const MessageShelf = (props: any) => {
     stompClient = over(sockJS)
     stompClient.connect({}, onConnected, onError)
   }, [])
-  
-  // websocket connection end
 
   useEffect(() => {
-    console.log("messages updated")
   }, [messages])
 
     return (
@@ -93,8 +78,6 @@ const MessageShelf = (props: any) => {
 
           <ChatHeader/>
           
-          {/* TODO: Remove Grid and just implement a Stack with Row, then have them listed after each other*/}
-              {/* TODO: Loop here the users recipient messages*/}
               <ReceiverMessageItem message={"Yolo 😜"}/>
 
               {messages.map((item, i) => (

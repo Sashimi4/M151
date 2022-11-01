@@ -5,7 +5,7 @@ import java.util.*
 
 @Document(collection = "match")
 data class Match (
-    private val id: UUID,
-    private val profileId_1: UUID,
-    private val profileId_2: UUID,
+    val id: UUID,
+    val profileId_1: UUID,
+    val profileId_2: UUID,
 )

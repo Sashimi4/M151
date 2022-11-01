@@ -17,8 +17,8 @@ class UserHandshakeHandler: DefaultHandshakeHandler() {
         wsHandler: WebSocketHandler,
         attributes: MutableMap<String, Any>
     ): Principal {
-        val randomID: String = UUID.randomUUID().toString()
-        LOG.info("User with ID $randomID opened the page")
-        return UserPrincipal({ randomID })
-    } //here we want to grab the information of the user instead of just a random user. -> we want the mongodb user containing all messages
+        val id: String = UUID.randomUUID().toString()
+        LOG.info("User with ID $id opened the page")
+        return UserPrincipal({ id })
+    } //here we want to grab the information of the user. -> we want the mongodb user containing all messages
 }

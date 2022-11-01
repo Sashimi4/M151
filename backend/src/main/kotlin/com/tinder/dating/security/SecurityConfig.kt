@@ -27,9 +27,8 @@ class SecurityConfig: WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity?) {
         http?.authorizeRequests()
-            //?.mvcMatchers(HttpMethod.GET, "/*")?.permitAll() //getters allowed for all getters
-            ?.anyRequest()?.permitAll()
-            //?.authenticated()
+            ?.anyRequest()
+            ?.authenticated()
             ?.and()
             ?.cors()
             ?.configurationSource(corsConfigurationSource())

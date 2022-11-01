@@ -14,8 +14,6 @@ import { Box, createTheme, Paper, ThemeProvider } from '@mui/material';
 import Navbar from '../components/Navbar';
 import AppState from '../assets/AppStates';
 
-//source : https://github.com/JayaramachandranAugustin/ChatApplication/blob/main/react-client/src/components/ChatRoom.js
-
 const Home = () => {
 
   const [ activeShelf, setActiveShelf ] = useState(AppState.HOME)
@@ -27,28 +25,20 @@ const Home = () => {
   const [accessToken, setAccessToken] = useState("")
 
   useEffect(() => {
-    console.log(`final state: ${activeShelf}`)
   }, [activeShelf])
 
   const fetchUserProfile = async () => {
-    //getAccessTokenSilently won't work for localhost
     const token = await getAccessTokenWithPopup({
       domain: "dev-opmozjaa.us.auth0.com",
       client_id: "c2myyEju3WbyPYQLqrzTb5wdqoxBbqsF",
       audience: "https://tinder.space.com",
     })
-
-    //debugging purposes
-    console.log(token)
-
     setAccessToken(token)
   }
 
   useEffect(() => {
     fetchUserProfile()
   }, [])
-
-  // TODO() = Replace static text with strings from "AppStaticStrings"
 
     return (
       /* Interchangeable shelf content */
@@ -62,7 +52,7 @@ const Home = () => {
             </Grid2>
             <Grid2 xs={6}>
               {/* swap content out here */}
-              {/*
+              {
               (() => {
                 switch(activeShelf) {
                   case AppState.HOME: 
@@ -73,9 +63,8 @@ const Home = () => {
                     return <ProfileShelf/>
                   default:
                     return null
-                }  <button onClick={fetchUserProfile}>Fetch Token</button>
-              })()*/}
-              <MessageShelf accessToken={accessToken}/>
+                }
+              })()}
             </Grid2>
           </Grid2>
       </Box>
@@ -83,6 +72,5 @@ const Home = () => {
   }
 
   export default withAuthenticationRequired(Home, {
-    // Update message with loading icon
     onRedirecting: () => (<div>Redirecting you to the login page...</div>)
   });

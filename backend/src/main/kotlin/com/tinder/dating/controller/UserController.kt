@@ -1,6 +1,7 @@
 package com.tinder.dating.controller
 
 import com.tinder.dating.service.UserService
+import com.tinder.dating.sqlData.domain.Country
 import com.tinder.dating.sqlData.domain.dto.UserDTO
 import com.tinder.dating.sqlData.repo.CountryRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,20 +18,16 @@ class UserController @Autowired constructor(
     private val countryRepository: CountryRepository
 ) {
 
-    @GetMapping("/")
+    @GetMapping("/user/{email}")
+    @PreAuthorize("hasAuthority('read:allusers')")
     fun getUserByEmail(@Payload email: String): ResponseEntity<Any> {
         val user = userService.findUserByEmail(email)
         return ResponseEntity.ok(user)
     }
 
-    @GetMapping("/testUser")
-    fun test(): UserDTO {
-        return UserDTO(UUID.randomUUID(), "LoremIpsum5@email.com", "Spain")
-    }
-
     // User Controllers
-
-    @GetMapping("/users")
+    @GetMapping("/user")
+    @PreAuthorize("hasAuthority('read:allusers')")
     fun getAllUsers(): ResponseEntity<Any> {
         val users = userService.findAllUsers()
         val userEmails = mutableListOf<String>()
@@ -42,13 +39,9 @@ class UserController @Autowired constructor(
 
     // Country Controllers
     @GetMapping("/countries")
-    @PreAuthorize("hasAuthority('create:messages')")
-    fun getAllCountryOptions(): MutableIterable<String> {
+    @PreAuthorize("hasAuthority('read:allcountries')")
+    fun getAllCountryOptions(): ResponseEntity<MutableIterable<Country>> {
         val countries = countryRepository.findAll()
-        val countryNames = mutableListOf<String>()
-        for (country in countries) {
-            countryNames.add(country.countryName)
-        }
-        return countryNames
+        return ResponseEntity.ok(countries)
     }
 }

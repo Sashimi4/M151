@@ -11,22 +11,13 @@ import java.util.*
 @AllArgsConstructor
 @Document(collection = "message")
 data class Message (
-
     var id : UUID,
-
-    var chatId : UUID, //FK from chatRoom
-
+    var chatId : UUID,
     var senderId : UUID,
-
     var senderName : String,
-
     var receiverId : UUID,
-
     var receiverName : String,
-
     var content : String,
-
     var timestamp: Date,
-
     var status: MessageStatus,
         )

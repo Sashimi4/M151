@@ -4,7 +4,7 @@ import { AiOutlineEnvironment } from "react-icons/ai"
 import { TbHeartPlus } from "react-icons/tb"
 import { CgClose } from "react-icons/cg"
 
-import { Box, Card, CardContent, CardMedia, Fab } from '@mui/material'
+import { Box, Card, CardContent, CardMedia, CircularProgress, Fab } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import ColorScheme from '../assets/ColorScheme'
 import axios from 'axios'
@@ -14,8 +14,6 @@ const ProfileCard = () => {
 
     const { getAccessTokenWithPopup } = useAuth0();
 
-    //match stands for users matches and represents other users
-    //These are the only necessary fields as of now
     const [match, setMatch] = useState({
         name: "Lorene",
         age: 26,
@@ -34,8 +32,8 @@ const ProfileCard = () => {
         return accessToken
     }
 
-    //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch -> available options
     const fetchUserProfile = async () => {
+        try{
         const response = await fetch("http://localhost:8080/profile/Janet", {
             method: 'GET',
             mode: 'cors',
@@ -45,16 +43,18 @@ const ProfileCard = () => {
                 'Authorization': `Basic ${retreiveToken}`
             },
         })
-        console.log("response: " + response)
+        }catch(e) {
+            console.error(e)
+        }
     }
 
     useEffect(() => {
         fetchUserProfile()
     }, [])
 
-    //array of users -> grab like 5 and then reload or just always grab a new one.
     return (
         <>
+            { match ? 
             <Box sx={{backgroundColor: ColorScheme.BLACK, padding: "1em", marginTop: "1em", width: "60%"}}>
                 <img src={`${match.imgSrc}`} srcSet={`${match.imgSrc}`} style={{width: 350, height: 550, objectFit: "cover"}} alt="Profile Picture"/>
                     <Box>
@@ -76,55 +76,14 @@ const ProfileCard = () => {
                     </Fab>
                 <Typography sx={{color: ColorScheme.WHITE}}>{match.aboutMe}</Typography>
             </Box>
+            :
+            <Box sx={{justifyContent: "center", alignSelf: "center"}}>
+                <CircularProgress color="secondary"/>
+            </Box>
+            }
+
         </>
     )
 }
 
 export default ProfileCard
-
-const CardContainer = styled.div`
-    position: relative;
-    //display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8px;
-    margin-right: 2em;
-    margin-left: 2em;
-    align-items: center;
-    width: 50%;
-    border-radius: 10px;
-
-    //test purposes
-    background-color: salmon;
-`
-
-const ProfileImage = styled.img`
-    position: relative;
-    height: auto;
-    width: 100%;
-    object-fit: contain;
-    border-radius: 10px;
-`
-
-const TextWrapper = styled.div`
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
-    margin-right: 10px;
-
-    //test purposes
-    background-color: pink;
-`
-
-const LocationText = styled.h3`
-    color: blue;
-`
-
-const UserTitle = styled.h1`
-    color: red;
-`
-
-const AboutText = styled.p`
-    color: white;
-`

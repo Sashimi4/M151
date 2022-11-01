@@ -9,19 +9,13 @@ const MessageList = (props: any) => {
 
     const openChat = () => {
         props.setActiveShelf(AppState.CHAT)
-        //grab user logic
     }
 
     return (
         <Box //onClick={navigateChat}
         sx={{backgroundColor: ColorScheme.PURPLE, position: "absolute", top: 0, width: "33%", height: "100%"}}>
-            {/* search bar here cause why not */}
             <Stack direction="column">
                 <MessageBlock openChat={openChat}/>
-                <MessageBlock/>
-                <MessageBlock/>
-                <MessageBlock/>
-                <MessageBlock/>
             </Stack>
         </Box>
     )

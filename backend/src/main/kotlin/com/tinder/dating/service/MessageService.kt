@@ -10,10 +10,11 @@ import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.data.mongodb.core.query.Update
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 import kotlin.collections.ArrayList
 
-
+@Transactional
 @Service
 class MessageService @Autowired constructor(
     val messageRepository: MessageRepository,
