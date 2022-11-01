@@ -2,8 +2,7 @@ package com.tinder.dating.sqlData.domain
 
 import lombok.NoArgsConstructor
 import lombok.AllArgsConstructor
-import lombok.Getter
-import lombok.Setter
+import org.springframework.data.annotation.Transient
 import javax.persistence.*
 
 @Entity
@@ -20,6 +19,7 @@ class Country (
     @Column(name="country_name", nullable = false, unique = true)
     val countryName : String,
 
+    @Transient
     @OneToMany(mappedBy = "country")
     val users : Set<User>
 )

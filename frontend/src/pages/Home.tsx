@@ -22,7 +22,9 @@ const Home = () => {
 
   const [userData, setUserData] = useState(null)
 
-  const { user, isLoading, getIdTokenClaims, getAccessTokenWithPopup } = useAuth0();
+  const { getAccessTokenWithPopup } = useAuth0();
+
+  const [accessToken, setAccessToken] = useState("")
 
   useEffect(() => {
     console.log(`final state: ${activeShelf}`)
@@ -30,16 +32,20 @@ const Home = () => {
 
   const fetchUserProfile = async () => {
     //getAccessTokenSilently won't work for localhost
-    const accessToken = await getAccessTokenWithPopup({
+    const token = await getAccessTokenWithPopup({
       domain: "dev-opmozjaa.us.auth0.com",
       client_id: "c2myyEju3WbyPYQLqrzTb5wdqoxBbqsF",
       audience: "https://tinder.space.com",
     })
-    console.log(accessToken)
+
+    //debugging purposes
+    console.log(token)
+
+    setAccessToken(token)
   }
 
   useEffect(() => {
-
+    fetchUserProfile()
   }, [])
 
   // TODO() = Replace static text with strings from "AppStaticStrings"
@@ -67,9 +73,9 @@ const Home = () => {
                     return <ProfileShelf/>
                   default:
                     return null
-                }
+                }  <button onClick={fetchUserProfile}>Fetch Token</button>
               })()*/}
-              <SearchShelf/>
+              <MessageShelf accessToken={accessToken}/>
             </Grid2>
           </Grid2>
       </Box>

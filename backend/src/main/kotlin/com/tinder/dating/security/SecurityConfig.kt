@@ -28,8 +28,8 @@ class SecurityConfig: WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity?) {
         http?.authorizeRequests()
             //?.mvcMatchers(HttpMethod.GET, "/*")?.permitAll() //getters allowed for all getters
-            ?.anyRequest()
-            ?.authenticated()
+            ?.anyRequest()?.permitAll()
+            //?.authenticated()
             ?.and()
             ?.cors()
             ?.configurationSource(corsConfigurationSource())
@@ -49,6 +49,7 @@ class SecurityConfig: WebSecurityConfigurerAdapter() {
             HttpMethod.DELETE.name,
         )
 
+        //Enable all CORS connection
         val source: UrlBasedCorsConfigurationSource = UrlBasedCorsConfigurationSource()
         source.registerCorsConfiguration("/**", configuration.applyPermitDefaultValues())
         return source

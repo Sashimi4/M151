@@ -7,9 +7,11 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter
 import org.springframework.messaging.converter.MessageConverter
 import org.springframework.messaging.simp.config.MessageBrokerRegistry
 import org.springframework.util.MimeTypeUtils
+import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer
+
 
 @Configuration
 @EnableWebSocketMessageBroker
@@ -37,4 +39,6 @@ class WebSocketConfig : WebSocketMessageBrokerConfigurer {
         messageConverters.add(converter)
         return false
     }
+
+
 }

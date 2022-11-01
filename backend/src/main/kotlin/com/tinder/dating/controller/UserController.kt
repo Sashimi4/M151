@@ -1,18 +1,16 @@
 package com.tinder.dating.controller
 
-import com.tinder.dating.service.ChatRoomService
-import com.tinder.dating.service.MessageService
 import com.tinder.dating.service.UserService
+import com.tinder.dating.sqlData.domain.dto.UserDTO
 import com.tinder.dating.sqlData.repo.CountryRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.messaging.handler.annotation.Payload
-import org.springframework.messaging.simp.SimpMessagingTemplate
-import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RestController
+import java.util.*
 
-@Controller
+@RestController
 class UserController @Autowired constructor(
     private val userService: UserService,
     private val countryRepository: CountryRepository
@@ -24,16 +22,32 @@ class UserController @Autowired constructor(
         return ResponseEntity.ok(user)
     }
 
-    //test
-    @GetMapping("/getAllUsers")
-    fun test(): ResponseEntity<Any> {
-        val users = userService.findAllUsers()
-        return ResponseEntity.ok(users)
+    @GetMapping("/testUser")
+    fun test(): UserDTO {
+        return UserDTO(UUID.randomUUID(), "LoremIpsum5@email.com", "Spain")
     }
 
-    @GetMapping("/getAllCountries")
-    fun test2(): ResponseEntity<Any> {
+    // User Controllers
+
+    @GetMapping("/users")
+    fun getAllUsers(): ResponseEntity<Any> {
+        val users = userService.findAllUsers()
+        val userEmails = mutableListOf<String>()
+        for (user in users) {
+            userEmails.add(user.email)
+        }
+        return ResponseEntity.ok(userEmails)
+    }
+
+    // Country Controllers
+
+    @GetMapping("/countries")
+    fun getAllCountryOptions(): MutableIterable<String> {
         val countries = countryRepository.findAll()
-        return ResponseEntity.ok(countries)
+        val countryNames = mutableListOf<String>()
+        for (country in countries) {
+            countryNames.add(country.countryName)
+        }
+        return countryNames
     }
 }

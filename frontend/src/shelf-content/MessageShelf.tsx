@@ -6,9 +6,12 @@ import SenderMessageItem from '../components/SenderMessageItem'
 import ReceiverMessageItem from '../components/ReceiverMessageItem'
 import TextField from '../components/TextField'
 import ColorScheme from '../assets/ColorScheme'
+import ChatHeader from '../components/ChatHeader';
 
 //AppState = CHAT
-const MessageShelf = () => {
+const MessageShelf = (props: any) => {
+
+  const [accessToken, setAccessToken] = useState("")
 
   const [messages, setMessages] = useState(["First message"])
 
@@ -67,7 +70,12 @@ const MessageShelf = () => {
   }
 
   useEffect(() => {
-    const sockJS = new SockJS("http://localhost:8080/chatroom")
+    const options = {
+      headers: {
+        "Authorization" : "Bearer " + "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImNBbldHOUM1T2J4OFZoczFKTklnYSJ9.eyJodHRwczovL3RpbmRlci5zcGFjZS5jb20vcm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwczovL2Rldi1vcG1vemphYS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8YjE5MjYyMGYtODI0ZS00NzZhLWI0MzgtNTc2OWExMjhjMzFiIiwiYXVkIjpbImh0dHBzOi8vdGluZGVyLnNwYWNlLmNvbSIsImh0dHBzOi8vZGV2LW9wbW96amFhLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2NjcyNTE5MTMsImV4cCI6MTY2NzMzODMxMywiYXpwIjoiYzJteXlFanUzV2J5UFlRTHFyelRiNXdkcW94QmJxc0YiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiY3JlYXRlOm1lc3NhZ2VzIl19.DfSxvdaS3ENbxJGC-Te_i3wRGo69zjLZ8pMiJ2WzXU6EQtb8yKNBX-AwGCFinigUy1Y6vBeA91zzUcTzAeB7ECYGfd2M8RI74xOf0_HaAn6SVxBZcaVx2m_87AQ7dcsum9rEObYYJ7ugJnsVGeCp7e1Vp81M4Cr5YMalrYv0yiJycSxNKX6hyR5NyFGBbNyMP7FJxaNO2dAxGduuIWGLvoOS3-L6PqER_mYcnHFd6CRvwyEHD87Eh3whaXPdzrkouO0Mfq6Klca91lYGFNqiYNWSdz9mr0YOJND2iEU8_GrkN5RlUQERohNFH-56DauqwxUCCTurP11ATA3SkxpxCg"
+      }
+    }
+    const sockJS = new SockJS("http://localhost:8080/chatroom", options)
     stompClient = over(sockJS)
     stompClient.connect({}, onConnected, onError)
   }, [])
@@ -82,6 +90,9 @@ const MessageShelf = () => {
       <>
         <Box sx={{backgroundColor: ColorScheme.BACKGROUND_BLACK, paddingRight: "35px", paddingLeft: "25px", 
         alignItems: "center", position: "absolute", bottom: 0, height: "100%", width: "46%"}}>
+
+          <ChatHeader/>
+          
           {/* TODO: Remove Grid and just implement a Stack with Row, then have them listed after each other*/}
               {/* TODO: Loop here the users recipient messages*/}
               <ReceiverMessageItem message={"Yolo 😜"}/>
@@ -101,3 +112,7 @@ const MessageShelf = () => {
   }
 
   export default MessageShelf;
+
+function getAccessTokenWithPopup(arg0: { domain: string; client_id: string; audience: string; }) {
+  throw new Error('Function not implemented.');
+}

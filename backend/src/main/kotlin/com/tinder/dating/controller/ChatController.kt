@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import java.security.Principal
 import java.util.*
 
+@CrossOrigin(origins = ["http://localhost:8080", "http://localhost:3000"])
 @Controller
 class ChatController @Autowired constructor(
     private val messagingTemplate: SimpMessagingTemplate,
@@ -29,7 +30,7 @@ class ChatController @Autowired constructor(
     @MessageMapping("/chat")
     fun processMessage(@Payload message: String, user: Principal, @Header("simpSessionId") sessionId: String) {
 
-        print("Message received")
+        print("Message received session ID: ${sessionId}")
         /*
         message.id = UUID.randomUUID()
         val chatId = chatRoomService.getChatId(message.senderId, message.receiverId, true)
@@ -43,9 +44,11 @@ class ChatController @Autowired constructor(
         val savedMessage: Message = messageService.saveMessage(message)
          */
 
+        /*
         messagingTemplate.convertAndSendToUser(
             "", "/user/queue/direct-message", message//ChatNotification(savedMessage.id, savedMessage.senderId, savedMessage.senderName)
         )
+         */
     }
 
     @GetMapping("/messages/{senderId}/{receiverId}/count")
