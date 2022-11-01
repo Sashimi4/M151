@@ -1,0 +1,4 @@
+export default {
+    MAX_LAST_MESSAGE_LENGTH: 67,
+    TRUNCATED_MESSAGE_LENGTH: 70,
+}
